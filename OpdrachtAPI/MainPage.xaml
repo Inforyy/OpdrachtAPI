@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OpdrachtAPI.MainPage">
+
+    <StackLayout>
+        <ListView ItemsSource="{Binding RadioData}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <FlexLayout FlexLayout.Basis="0.5" FlexLayout.Grow="1">
+                                <StackLayout BackgroundColor="DarkSlateGray" Margin="10">
+                                    <Label Text="Playing now"/>
+                                    <Label Text="{Binding now_playing.song.title}" TextColor="White" FontSize="Large" FontAttributes="Bold" Margin="10"/>
+                                    <Label Text="{Binding now_playing.song.artist}" TextColor="White" FontSize="Medium" Margin="10"/>
+                                    <Label Text="{Binding now_playing.remaining, StringFormat='Remaining: {0}'}" x:Name="remaining_time" TextColor="White" FontSize="Medium" Margin="10"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="DarkSlateGray" Margin="10" >
+                                    <Label Text="Playing next"/>
+                                    <Label Text="{Binding playing_next.song.title}" TextColor="White" FontSize="Large" FontAttributes="Bold" Margin="10"/>
+                                    <Label Text="{Binding playing_next.song.artist}" TextColor="White" FontSize="Medium" Margin="10"/>
+                                </StackLayout>
+                                <StackLayout Margin="10">
+                                    <Button Text="Refresh" x:Name="refresh_button" Clicked="refresh_button_Clicked"> </Button>
+                                </StackLayout>
+                            </FlexLayout>
+                            <StackLayout FlexLayout.Basis="0.5" FlexLayout.Grow="1">
+                                <Label Text="5 Recente afgespeelde nummers:" FontSize="Large" FontAttributes="Bold" />
+                                <ListView ItemsSource="{Binding song_history}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout>
+                                                    <Label Text="{Binding song.title}" TextColor="White" FontSize="Large" FontAttributes="Bold" Margin="10"/>
+                                                    <Label Text="{Binding song.artist}" TextColor="White" FontSize="Medium" Margin="10"/>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
